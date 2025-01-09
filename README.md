@@ -9,6 +9,21 @@ This project demonstrates the use of data loading, exploration, basic data analy
 - Visualizing data trends.
 - Training a Logistic Regression model to predict the survival status of passengers.
 
+### Quality Issues:
+
+- Missing values in Age, Cabin, and Embarked columns.
+- Outliers in Fare and Age.
+
+Cleaning:
+
+- Impute Age and Fare with median values.
+- Encode categorical variables (Sex, Embarked) with one-hot encoding.
+- Drop columns like Cabin or Ticket if irrelevant.
+
+Known Limitations:
+- Simplified and overused dataset.
+- Class imbalance (survivors vs. non-survivors).
+
 ### Objective
 
 The main objective of this project is to demonstrate the application of machine learning techniques, particularly logistic regression, to predict passenger survival on the Titanic based on various features like age, sex, class, and fare.
