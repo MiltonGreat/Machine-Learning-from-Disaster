@@ -21,7 +21,6 @@ Cleaning:
 - Drop columns like Cabin or Ticket if irrelevant.
 
 Known Limitations:
-- Simplified and overused dataset.
 - Class imbalance (survivors vs. non-survivors).
 
 ### Objective
@@ -65,7 +64,7 @@ The dataset used for this project is the Titanic Dataset. It contains the follow
 
 4. Model Evaluation
 
-The logistic regression model has the following evaluation results: Accuracy: 55.5%
+The logistic regression model has the following evaluation results: Accuracy: 51%
 
 ### Challenges
 
@@ -74,7 +73,7 @@ The logistic regression model has the following evaluation results: Accuracy: 55
 
 ### Conclusion
 
-This project demonstrates the process of loading, exploring, cleaning, and preparing a dataset for machine learning. Using logistic regression, we built a predictive model to estimate the survival probability of Titanic passengers based on features such as age, sex, and passenger class. While the model's performance (accuracy of 55.5%) can be improved, it serves as a strong foundation for learning about data preprocessing, feature engineering, and classification tasks.
+This project demonstrates the process of loading, exploring, cleaning, and preparing a dataset for machine learning. Using logistic regression, we built a predictive model to estimate the survival probability of Titanic passengers based on features such as age, sex, and passenger class. While the model's performance (accuracy of 51%) can be improved, it serves as a strong foundation for learning about data preprocessing, feature engineering, and classification tasks.
 
 ### Future Improvements
 
