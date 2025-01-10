@@ -9,20 +9,6 @@ This project demonstrates the use of data loading, exploration, basic data analy
 - Visualizing data trends.
 - Training a Logistic Regression model to predict the survival status of passengers.
 
-### Quality Issues:
-
-- Missing values in Age, Cabin, and Embarked columns.
-- Outliers in Fare and Age.
-
-Cleaning:
-
-- Impute Age and Fare with median values.
-- Encode categorical variables (Sex, Embarked) with one-hot encoding.
-- Drop columns like Cabin or Ticket if irrelevant.
-
-Known Limitations:
-- Class imbalance (survivors vs. non-survivors).
-
 ### Objective
 
 The main objective of this project is to demonstrate the application of machine learning techniques, particularly logistic regression, to predict passenger survival on the Titanic based on various features like age, sex, class, and fare.
@@ -64,7 +50,7 @@ The dataset used for this project is the Titanic Dataset. It contains the follow
 
 4. Model Evaluation
 
-The logistic regression model has the following evaluation results: Accuracy: 51%
+The logistic regression model has the following evaluation results: Accuracy: 54%
 
 ### Challenges
 
@@ -73,7 +59,7 @@ The logistic regression model has the following evaluation results: Accuracy: 51
 
 ### Conclusion
 
-This project demonstrates the process of loading, exploring, cleaning, and preparing a dataset for machine learning. Using logistic regression, we built a predictive model to estimate the survival probability of Titanic passengers based on features such as age, sex, and passenger class. While the model's performance (accuracy of 51%) can be improved, it serves as a strong foundation for learning about data preprocessing, feature engineering, and classification tasks.
+This project demonstrates the process of loading, exploring, cleaning, and preparing a dataset for machine learning. Using logistic regression, we built a predictive model to estimate the survival probability of Titanic passengers based on features such as age, sex, and passenger class. While the model's performance (accuracy of 54%) can be improved, it serves as a strong foundation for learning about data preprocessing, feature engineering, and classification tasks.
 
 ### Future Improvements
 
