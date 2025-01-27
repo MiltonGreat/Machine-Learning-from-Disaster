@@ -1,72 +1,131 @@
-# Titanic Dataset Analysis and Logistic Regression Model
+# Titanic Dataset Analysis and Machine Learning Project
 
-### Project Overview
-
-This project demonstrates the use of data loading, exploration, basic data analysis techniques, and machine learning modeling using the Titanic dataset. The dataset provides various features related to passengers aboard the RMS Titanic, such as demographics, survival status, and other factors. The project involves:
+## Project Overview
+This project demonstrates the use of the Titanic dataset to explore data preprocessing techniques, feature engineering, and machine learning modeling. The dataset contains passenger information, such as demographics and survival status, aboard the RMS Titanic. The project involves:
 
 - Loading and exploring the Titanic dataset.
-- Cleaning the data, handling missing values, and encoding categorical variables.
-- Visualizing data trends.
-- Training a Logistic Regression model to predict the survival status of passengers.
+- Cleaning and preprocessing the data.
+- Performing exploratory data analysis (EDA).
+- Feature engineering for improved model performance.
+- Training and evaluating machine learning models using Random Forest and Logistic Regression.
 
-### Objective
+## Objective
+The main objective is to build a robust classification model to predict the survival of passengers on the Titanic using features such as age, sex, class, fare, and family size.
 
-The main objective of this project is to demonstrate the application of machine learning techniques, particularly logistic regression, to predict passenger survival on the Titanic based on various features like age, sex, class, and fare.
+## Dataset
+The Titanic dataset contains the following columns:
 
-### Dataset
+- **PassengerId**: Unique identifier for each passenger.
+- **Pclass**: Passenger class (1st, 2nd, 3rd).
+- **Name**: Full name of the passenger.
+- **Sex**: Gender of the passenger.
+- **Age**: Age of the passenger.
+- **SibSp**: Number of siblings/spouses aboard.
+- **Parch**: Number of parents/children aboard.
+- **Ticket**: Ticket number.
+- **Fare**: Ticket fare.
+- **Cabin**: Cabin number.
+- **Embarked**: Port of embarkation (C = Cherbourg; Q = Queenstown; S = Southampton).
+- **Survived**: Survival status (0 = No; 1 = Yes).
 
-The dataset used for this project is the Titanic Dataset. It contains the following columns:
+## Key Steps
 
-- PassengerId: Unique identifier for each passenger.
-- Pclass: Passenger class (1st, 2nd, 3rd).
-- Name: Full name of the passenger.
-- Sex: Gender of the passenger.
-- Age: Age of the passenger.
-- SibSp: Number of siblings/spouses aboard.
-- Parch: Number of parents/children aboard.
-- Ticket: Ticket number.
-- Fare: Ticket fare.
-- Embarked: Port of embarkation (C = Cherbourg; Q = Queenstown; S = Southampton).
-- Survived: Survival status (0 = No; 1 = Yes).
+### 1. Data Loading and Exploration
+- The dataset is loaded from a compressed zip file and read into a pandas DataFrame.
+- Basic statistics and data types are analyzed to understand the dataset structure.
+- Missing values and unique values are identified for key columns.
 
-### Key Steps
+### 2. Data Cleaning
+- Missing values in numerical columns (`Age`, `Fare`) are filled with their respective medians.
+- Missing values in the `Embarked` column are filled with the mode.
+- The `Sex` column is encoded into numerical values (`male` = 0, `female` = 1).
+- The `Embarked` column is one-hot encoded into `Embarked_Q` and `Embarked_S`.
+- Irrelevant columns such as `Name`, `Ticket`, `Cabin`, and `PassengerId` are dropped.
 
-1. Data Loading and Exploration
+### 3. Feature Engineering
+- **FamilySize**: Created by combining `SibSp` and `Parch` to represent family size.
+- **AgeGroup**: Binned `Age` into categories such as `Child`, `Teen`, `Adult`, `Middle Aged`, and `Senior`. These categories were one-hot encoded.
 
-- The dataset is loaded using pandas.read_csv() from a zipped file.
-- We perform basic data exploration such as displaying the first few rows of the dataset and generating summary statistics using describe().
-- We check for missing values and explore unique values in key columns like Sex and Embarked.
+### 4. Exploratory Data Analysis (EDA)
+- Visualized survival rates by:
+  - Gender
+  - Family size
+  - Passenger class
+- Analyzed the distribution of fare values.
+- Generated a correlation heatmap to identify relationships between features.
 
-2. Data Cleaning
+### 5. Model Training and Evaluation
+- **Feature Selection**: 
+  Selected features: `Pclass`, `Age`, `SibSp`, `Parch`, `Fare`, `Sex`, `Embarked_Q`, `Embarked_S`, `FamilySize`, and `AgeGroup` (encoded).
 
-- Missing Values: The Age and Fare columns are filled with their median values. Any rows with missing values in the Embarked column are dropped.
-- Categorical Variables: The Sex column is encoded into numerical values, where 'male' is mapped to 0 and 'female' to 1. The Embarked column is one-hot encoded into Embarked_Q and Embarked_S.
-- Feature Selection: Irrelevant columns such as Name, Ticket, and PassengerId are dropped from the dataset.
+- **Data Splitting**: 
+  The dataset was split into training (80%) and testing (20%) sets using stratified sampling.
 
-3. Model Training
+- **Scaling**:
+  Applied `StandardScaler` to standardize feature values.
 
-- Logistic Regression: The cleaned dataset is split into training and testing sets (80-20 split). A Logistic Regression model is trained to predict survival status based on the selected features.
-- Model Evaluation: The model's performance is evaluated using accuracy, confusion matrix, and classification report, which provide insights into the precision, recall, and F1-score for each class.
+- **Model Training**:
+  - Logistic Regression: Trained with scaled features to establish a baseline.
+  - Random Forest Classifier: Hyperparameter tuning was performed using `GridSearchCV` to optimize parameters like `n_estimators`, `max_depth`, and `min_samples_split`.
 
-4. Model Evaluation
+- **Evaluation Metrics**:
+  - Accuracy
+  - Confusion Matrix
+  - Classification Report (Precision, Recall, F1-Score)
+  - ROC-AUC Score
 
-The logistic regression model has the following evaluation results: Accuracy: 54%
+### 6. Feature Importance
+The importance of features was visualized using a bar plot from the Random Forest model.
 
-### Challenges
+##### Feature Importance
 
-- **Convergence Warning**: During training, a convergence warning was encountered, which was addressed by scaling the features and increasing the number of iterations in the Logistic Regression model.
-- **Data Quality**: Handling missing data and properly encoding categorical variables were critical steps in preparing the dataset for modeling.
+![screenshot-localhost_8889-2025 01 27-12_59_28](https://github.com/user-attachments/assets/b428c2ef-7238-4667-b4cb-d8758a655bdc)
 
-### Conclusion
+## Results
+### Best Random Forest Model:
+- **Best Parameters**: `{'max_depth': 5, 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}`
+- **Accuracy**: 54.5%
+- **Confusion Matrix**:
+  ```
+  [[71 31]
+   [60 38]]
+  ```
+- **Classification Report**:
+  ```
+                precision    recall  f1-score   support
 
-This project demonstrates the process of loading, exploring, cleaning, and preparing a dataset for machine learning. Using logistic regression, we built a predictive model to estimate the survival probability of Titanic passengers based on features such as age, sex, and passenger class. While the model's performance (accuracy of 54%) can be improved, it serves as a strong foundation for learning about data preprocessing, feature engineering, and classification tasks.
+             0       0.54      0.70      0.61       102
+             1       0.55      0.39      0.46        98
 
-### Future Improvements
+      accuracy                           0.55       200
+     macro avg       0.55      0.54      0.53       200
+  weighted avg       0.55      0.55      0.53       200
+  ```
+- **ROC-AUC Score**: 0.518
 
-- Feature Engineering: Explore additional feature combinations and polynomial features for potential improvements in model performance.
-- Model Selection: Experiment with other classification models such as Random Forest, Gradient Boosting, or XGBoost.
-- Hyperparameter Tuning: Use GridSearchCV or RandomizedSearchCV to optimize hyperparameters and improve model performance.
+## Challenges
+1. **Class Imbalance**: 
+   The survival classes (0 and 1) were imbalanced, impacting the model's performance.
 
-### Source
+2. **Feature Importance**: 
+   Some features, like `Pclass` and `Sex`, were found to be more predictive than others.
 
-https://www.kaggle.com/datasets/waqi786/titanic-dataset
+3. **Hyperparameter Tuning**: 
+   Optimizing parameters using GridSearchCV improved the model slightly, but the accuracy remained moderate.
+
+## Future Improvements
+- **Advanced Feature Engineering**:
+  - Combine features like `FamilySize` and `Pclass` into interaction terms.
+  - Explore polynomial transformations of numeric features.
+
+- **Model Experimentation**:
+  - Experiment with ensemble models like Gradient Boosting, XGBoost, and CatBoost.
+  - Use SMOTE or other resampling techniques to address class imbalance.
+
+- **Evaluation**:
+  - Incorporate additional metrics like F2-score for imbalanced datasets.
+  - Use cross-validation to ensure model robustness.
+
+## Source
+
+Dataset: [Titanic Dataset on Kaggle](https://www.kaggle.com/datasets/waqi786/titanic-dataset)
