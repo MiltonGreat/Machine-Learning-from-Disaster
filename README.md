@@ -1,4 +1,4 @@
-# Titanic Dataset Analysis and Machine Learning Project
+# Titanic Dataset Analysis
 
 ## Project Overview
 This project demonstrates the use of the Titanic dataset to explore data preprocessing techniques, feature engineering, and machine learning modeling. The dataset contains passenger information, such as demographics and survival status, aboard the RMS Titanic. The project involves:
